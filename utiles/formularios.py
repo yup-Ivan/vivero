@@ -1,4 +1,3 @@
-
 def f_nueva_semilla(continuar=True):        
     while continuar:
         try:

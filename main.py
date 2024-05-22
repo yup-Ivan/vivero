@@ -1,10 +1,9 @@
-from utiles.models import Gestor
+from utiles.models import (Gestor, 
+                           Semilla)
 from utiles.formularios import (f_nueva_semilla, 
                                 f_eliminar_semilla,
                                 f_actualizar_semilla,
-                                f_agregar_semilla_carrito,
-                                )
-from utiles.objetos import Semilla
+                                f_agregar_semilla_carrito,)
 
 def menu_principal():
     return ("""
