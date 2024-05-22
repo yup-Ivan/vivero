@@ -1,4 +1,4 @@
-from utiles.funciones import Gestor
+from utiles.models import Gestor
 from utiles.formularios import (f_nueva_semilla, 
                                 f_eliminar_semilla,
                                 f_actualizar_semilla,
