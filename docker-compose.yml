@@ -1,0 +1,23 @@
+version: '3'
+services:
+  app:
+    build: .
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    volumes:  
+      - ./utiles/conectar.py:/code/utiles/conectar.py
+
+  db:
+    image: mysql:latest
+    restart: always
+    ports: 
+      - "3310:3306"
+    environment:
+      MYSQL_DATABASE: vivero_db
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: vivero
+      MYSQL_PASSWORD: vivero
+    volumes:
+      - ./dbdata:/var/lib/mysql
