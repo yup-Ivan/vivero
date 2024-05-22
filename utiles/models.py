@@ -45,21 +45,22 @@ class Gestor:
         datos = (stock, nombre)
         self.db.lanzar(linea, datos)
 
+    def obtener_precio(self, nombre):
+        linea = 'SELECT precio FROM semilla WHERE nombre = %s;'
+        datos = (nombre,)
+        precio = self.db.lanzar(linea, datos)
+        return precio[0][0]
+    
+    def obtener_cantidad(self, nombre):
+        linea = 'SELECT stock FROM semilla WHERE nombre = %s;'
+        datos = (nombre,)
+        stock = self.db.lanzar(linea, datos)
+        return stock[0][0]
+    
     def actualizar_carrito(self, nombre, cantidad):
-        def obtener_precio(nombre):
-            linea = 'SELECT precio FROM semilla WHERE nombre = %s;'
-            datos = (nombre,)
-            precio = self.db.lanzar(linea, datos)
-            return precio[0][0]
         
-        def obtener_cantidad(nombre):
-            linea = 'SELECT stock FROM semilla WHERE nombre = %s;'
-            datos = (nombre,)
-            stock = self.db.lanzar(linea, datos)
-            return stock[0][0]
-        
-        precio = obtener_precio(nombre)
-        stock = obtener_cantidad(nombre)
+        precio = self.obtener_precio(nombre)
+        stock = self.obtener_cantidad(nombre)
         if cantidad > stock:
             return 'No tenemos suficiente stock.'
         linea = (

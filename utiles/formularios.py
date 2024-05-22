@@ -9,10 +9,19 @@ def f_nueva_semilla(continuar=True):
         except:
             print('Introduciste algo mal, recuerda precio es float y stock int.')
 
-def f_eliminar_semilla(continuar=True):
+def f_nombre_semilla(tipo, continuar=True):
+    if tipo == 'eliminar':
+        inpt = 'Introduce el nombre de la semilla a eliminar: '
+    elif tipo == 'precio':
+        inpt = 'Introduce el nombre de la semilla a examinar precio: '
+    elif tipo == 'stock':
+        inpt = 'Introduce el nombre de la semilla a examinar precio: '
+    else:
+        return 'El tipo es incorrecto.'
+    
     while continuar:
         try:
-            nombre = input('Introduce el nombre de la semilla a eliminar: ')
+            nombre = input(inpt)
             if nombre:
                 return nombre
         except:

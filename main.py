@@ -1,7 +1,7 @@
 from utiles.models import (Gestor, 
                            Semilla)
 from utiles.formularios import (f_nueva_semilla, 
-                                f_eliminar_semilla,
+                                f_nombre_semilla,
                                 f_actualizar_semilla,
                                 f_agregar_semilla_carrito,)
 
@@ -12,10 +12,12 @@ def menu_principal():
     2. Ver semillas.
     3. Eliminar semilla.
     4. Actualizar stock.
+    5. Ver precio de una semilla.
+    6. Ver stock de una semilla.
     //-------------------//
-    5. Añadir carrito.
-    6. Ver carrito.
-    7. Comprar.
+    7. Añadir carrito.
+    8. Ver carrito.
+    9. Comprar.
     //-------------------//
     0. Salir.
     //-------------------//
@@ -47,7 +49,7 @@ def empezar_gestion(gestionando=True):
 
         elif opcion_principal == '3':
 
-            nombre_semilla_eliminar = f_eliminar_semilla()
+            nombre_semilla_eliminar = f_nombre_semilla('eliminar')
             gestionar.eliminacion_semilla(nombre_semilla_eliminar)
         
         elif opcion_principal == '4':
@@ -57,11 +59,23 @@ def empezar_gestion(gestionando=True):
 
         elif opcion_principal == '5':
 
+            nombre = f_nombre_semilla('precio')
+            precio = gestionar.obtener_precio(nombre)
+            print(f'El precio de la semilla: {nombre}, es {precio}$ / ud.')
+
+        elif opcion_principal == '6': 
+
+            nombre = f_nombre_semilla('stock')
+            stock = gestionar.obtener_cantidad(nombre)
+            print(f'El stock de la semilla: {nombre}, es de: {stock} uds.')
+
+        elif opcion_principal == '7':
+
             nombre_semilla, cantidad = f_agregar_semilla_carrito()
             resp = gestionar.actualizar_carrito(nombre_semilla, cantidad)
             print(resp)
 
-        elif opcion_principal == '6':
+        elif opcion_principal == '8':
 
             lista_carrito = gestionar.carrito()
             
@@ -69,7 +83,7 @@ def empezar_gestion(gestionando=True):
             for id, nombre, precio, cantidad in lista_carrito:
                 print(f'{id:<10}{nombre:<10}{precio:<10}{cantidad:<10}')
         
-        elif opcion_principal == '7':
+        elif opcion_principal == '9':
 
             nombres, precio_final, ok = gestionar.comprar()
             if ok:
